@@ -1,0 +1,74 @@
+<style>
+        body {
+            margin: 0;
+            font-family: Arial, Helvetica, sans-serif;
+        }
+        .topnav {
+            overflow: hidden;
+            background-color: #333;
+        }
+        .topnav a {
+            float: left;
+            color: #f2f2f2;
+            text-align: center;
+            padding: 14px 16px;
+            text-decoration: none;
+            font-size: 17px;
+        }
+
+        .topnav a:hover {
+            background-color: #ddd;
+            color: black;
+        } 
+
+        .topnav a.active {
+            background-color: #4CAF50;
+            color: white;
+        }
+</style>
+<div class="topnav">
+        <a href="./">Home</a>
+        <a href="users">Users</a>
+        <a href="estimates">Estimates</a>
+        <a href="devices">Devices</a>
+        <a href="assistances">Assistances</a>
+        <a class="active" href="repairs">Repairs</a>
+</div>
+<div style="padding-left:16px">
+
+<p id="notice"><%= notice %></p>
+
+<h1>Repairs</h1>
+
+<table border="1">
+  <thead>
+    <tr>
+      <th>Username</th>
+      <th>Device</th>
+      <th>Price</th>
+      <th>Description</th>
+      <th>Date</th>
+      <th colspan="3"></th>
+    </tr>
+  </thead>
+
+  <tbody>
+    <% @repairs.each do |repair| %>
+      <tr>
+        <td><%= repair.username %></td>
+        <td><%= repair.device %></td>
+        <td><%= repair.price %></td>
+        <td><%= repair.description %></td>
+        <td><%= repair.date %></td>
+        <td><%= link_to 'Show', repair %></td>
+        <td><%= link_to 'Edit', edit_repair_path(repair) %></td>
+        <td><%= link_to 'Destroy', repair, method: :delete, data: { confirm: 'Are you sure?' } %></td>
+      </tr>
+    <% end %>
+  </tbody>
+</table>
+
+<br>
+
+<%= link_to 'New Repair', new_repair_path %>
+</div>

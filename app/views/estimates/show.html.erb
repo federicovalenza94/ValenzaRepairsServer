@@ -1,0 +1,34 @@
+<p id="notice"><%= notice %></p>
+
+<p>
+  <strong>Username:</strong>
+  <%= @estimate.username %>
+</p>
+
+<p>
+  <strong>Tipo:</strong>
+  <%= @estimate.tipo %>
+</p>
+
+<p>
+  <strong>Issue:</strong>
+  <%= @estimate.issue %>
+</p>
+
+<p>
+  <strong>Other:</strong>
+  <%= @estimate.other %>
+</p>
+
+<p>
+  <strong>Description:</strong>
+  <%= @estimate.description %>
+</p>
+
+<p>
+  <strong>Pdf:</strong>
+  <%= @estimate.pdf %>
+</p>
+
+<%= link_to 'Edit', edit_estimate_path(@estimate) %> |
+<%= link_to 'Back', estimates_path %>

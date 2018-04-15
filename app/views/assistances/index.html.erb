@@ -1,0 +1,72 @@
+<style>
+        body {
+            margin: 0;
+            font-family: Arial, Helvetica, sans-serif;
+        }
+        .topnav {
+            overflow: hidden;
+            background-color: #333;
+        }
+        .topnav a {
+            float: left;
+            color: #f2f2f2;
+            text-align: center;
+            padding: 14px 16px;
+            text-decoration: none;
+            font-size: 17px;
+        }
+
+        .topnav a:hover {
+            background-color: #ddd;
+            color: black;
+        } 
+
+        .topnav a.active {
+            background-color: #4CAF50;
+            color: white;
+        }
+</style>
+<div class="topnav">
+        <a href="./">Home</a>
+        <a href="users">Users</a>
+        <a href="estimates">Estimates</a>
+        <a href="devices">Devices</a>
+        <a class="active" href="assistances">Assistances</a>
+        <a href="repairs">Repairs</a>
+</div>
+<p id="notice"><%= notice %></p>
+
+<div style="padding-left:16px">
+
+<h1>Assistances</h1>
+
+<table border="1">
+  <thead>
+    <tr>
+      <th>Username</th>
+      <th>Chat</th>
+      <th>State</th>
+      <th colspan="3"></th>
+    </tr>
+  </thead>
+
+  <tbody>
+    <% @assistances.each do |assistance| %>
+      <tr>
+        <td><%= assistance.username %></td>
+        <td><%= assistance.chat %></td>
+        <td style="color:red;font: italic bold"><%= assistance.state %></td>
+        <!--<td><%= link_to 'Show', assistance %></td>-->
+        <td><%= link_to 'Send a Message', edit_assistance_path(assistance) %></td>
+        <td><%= link_to 'Destroy', assistance, method: :delete, data: { confirm: 'Are you sure?' } %></td>
+      </tr>
+      <script>
+            document.getElementById("state_id").value = "OK";
+      </script>
+    <% end %>
+  </tbody>
+</table>
+<br>
+
+<%= link_to 'New Assistance', new_assistance_path %>
+</div>

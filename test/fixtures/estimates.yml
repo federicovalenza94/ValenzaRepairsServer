@@ -1,0 +1,17 @@
+# Read about fixtures at http://api.rubyonrails.org/classes/ActiveRecord/FixtureSet.html
+
+one:
+  username: MyString
+  tipo: MyString
+  issue: MyString
+  other: MyString
+  description: MyString
+  pdf: MyString
+
+two:
+  username: MyString
+  tipo: MyString
+  issue: MyString
+  other: MyString
+  description: MyString
+  pdf: MyString

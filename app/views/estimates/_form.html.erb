@@ -1,0 +1,84 @@
+<%= form_with(model: estimate, local: true) do |form| %>
+  <% if estimate.errors.any? %>
+    <div id="error_explanation">
+      <h2><%= pluralize(estimate.errors.count, "error") %> prohibited this estimate from being saved:</h2>
+
+      <ul>
+      <% estimate.errors.full_messages.each do |message| %>
+        <li><%= message %></li>
+      <% end %>
+      </ul>
+    </div>
+  <% end %>
+
+  <div class="field">
+    <%= form.label :username %>
+    <%= form.text_field :username, id: :estimate_username %>
+  </div>
+
+  <div class="field">
+    <%= form.label :tipo %>
+    <%= form.text_field :tipo, id: :estimate_tipo %>
+  </div>
+
+  <div class="field">
+    <%= form.label :issue %>
+    <%= form.text_field :issue, id: :estimate_issue %>
+  </div>
+
+  <div class="field">
+    <%= form.label :other %>
+    <%= form.text_field :other, id: :estimate_other %>
+  </div>
+
+  <div class="field">
+    <%= form.label :description %>
+    <%= form.text_field :description, id: :estimate_description %>
+  </div>
+
+<!--
+  <div class="field">
+    <%= form.label :pdf %>
+    <%= form.file_field :pdf, id: :estimate_pdf %>
+  </div>
+-->
+
+    <style>
+        .NoneVis {
+            visibility: hidden
+        }
+    </style>
+    <div>
+        <label for="filePicker">Load Estimate:</label><br>
+        <input type="file" id="filePicker">
+    </div>
+    <div class="NoneVis">
+        <%= form.label :pdf %>
+        <%= form.text_field :pdf, id: :estimate_pdf %>
+    </div>
+    <div class="actions">
+        <%= form.submit %>
+    </div>
+
+    <script>
+        var handleFileSelect = function(evt) {
+        var files = evt.target.files;
+        var file = files[0];
+        
+        if (files && file) {
+            var reader = new FileReader();
+            reader.onload = function(readerEvt) {
+                var binaryString = readerEvt.target.result;
+                document.getElementById("estimate_pdf").value = btoa(binaryString);
+            };
+        reader.readAsBinaryString(file);
+        }
+        };
+        if (window.File && window.FileReader && window.FileList && window.Blob) {
+            document.getElementById('filePicker').addEventListener('change', handleFileSelect, false);
+        } else {
+            alert('The File APIs are not fully supported in this browser.');
+        }
+    </script>
+
+<% end %>

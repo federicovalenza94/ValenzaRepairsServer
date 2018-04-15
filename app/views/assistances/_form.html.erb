@@ -1,0 +1,97 @@
+<%= form_with(model: assistance, local: true) do |form| %>
+  <% if assistance.errors.any? %>
+    <div id="error_explanation">
+      <h2><%= pluralize(assistance.errors.count, "error") %> prohibited this assistance from being saved:</h2>
+      <ul>
+      <% assistance.errors.full_messages.each do |message| %>
+        <li><%= message %></li>
+      <% end %>
+      </ul>
+    </div>
+  <% end %>
+
+  <div class="field">
+    <%= form.label :username %>
+    <%= form.text_field :username, id: :assistance_username %>
+  </div>
+
+  <div class="field">
+    <%= form.label :chat %><br>
+    <%= form.text_area :chat, id: :assistance_chat, cols: "125", rows: "20" %>
+  </div>
+    
+  <div class="field">
+    <%= form.label :message %>
+    <%= form.text_field :message, id: :assistance_message %>
+  </div>
+    <!--
+  <div class="actions"> 
+     <%= form.submit  "Send message" %>
+  </div>-->
+
+  <script>
+    async function updatechat(url) {
+        var req = new XMLHttpRequest();  
+        //var domains = (window.location.href+"");
+        //var url = domains.substring(0, domains.length - 5)+".json";
+        req.open('GET', url, false);   
+        req.send(null);
+        if(req.status == 200)
+        {   var obj = JSON.parse(req.responseText);
+            var chat = document.getElementById("assistance_chat");
+            chat.value = obj.chat;
+            console.log(obj.chat);
+        }
+    }
+    var chat = document.getElementById("assistance_chat");
+    chat.scrollTop = chat.scrollHeight;
+    var domains = (window.location.href+"");
+    document.getElementById("assistance_chat").readOnly = true;
+    if(domains.substring(domains.length - 4, domains.length) === "edit")
+    {   var url = domains.substring(0, domains.length - 5)+".json";
+        window.setInterval(function(){
+            updatechat(url);
+        }, 5000);
+    }
+
+  </script>
+    <script src="http://ajax.googleapis.com/ajax/libs/jquery/1.9.1/jquery.min.js">
+    </script>
+    <script>
+        function sendmessage(){
+        $.ajax(
+                {
+                type : "POST",
+                url : "https://fcm.googleapis.com/fcm/send",
+
+                    headers :
+                {
+                    Authorization : "key=AAAAvnb64Sg:APA91bGpOZxILqmYIRSNFbcD-4ezQZeJrvjFydvgTGCblrmOnTCZktdv1fiTE3N9USd2iD7kAtY0NNlmz_6ey2vLHkNyOM4B4Rcrkf1ykNwFBY6CYNnsmRqNh_i0NSULl7c7MT9DyAK-"
+                },
+
+                    contentType : 'application/json',
+            data : JSON.stringify(
+        {
+           "to" : "/topics/valenzarepairs",
+           "data":
+           {
+               "action" : "set_message",
+               "message" : $("#assistance_message").val(),
+               "user" : $("#assistance_username").val()
+           }
+       }),
+
+       success : function(response)
+       {
+           console.log(response);
+       },
+       error : function(xhr, status, error)
+       {
+           console.log(xhr.error);
+       }
+    });
+        document.getElementById("assistance_chat").value += "\n[Admin]: "+document.getElementById("assistance_message").value;
+    };
+    </script>
+    <button onClick="sendmessage()">Send Message</button>
+<% end %>

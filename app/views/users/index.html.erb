@@ -1,0 +1,106 @@
+<style>
+        body {
+            margin: 0;
+            font-family: Arial, Helvetica, sans-serif;
+        }
+        .topnav {
+            overflow: hidden;
+            background-color: #333;
+        }
+        .topnav a {
+            float: left;
+            color: #f2f2f2;
+            text-align: center;
+            padding: 14px 16px;
+            text-decoration: none;
+            font-size: 17px;
+        }
+
+        .topnav a:hover {
+            background-color: #ddd;
+            color: black;
+        } 
+
+        .topnav a.active {
+            background-color: #4CAF50;
+            color: white;
+        }
+</style>
+<div class="topnav">
+        <a href="./">Home</a>
+        <a class="active" href="users">Users</a>
+        <a href="estimates">Estimates</a>
+        <a href="devices">Devices</a>
+        <a href="assistances">Assistances</a>
+        <a href="repairs">Repairs</a>
+</div>
+
+<p id="notice"><%= notice %></p>
+<div style="padding-left:16px">
+
+<table border="1">
+  <thead>
+    <tr>
+      <th>Name</th>
+      <th>Surname</th>
+      <th>Gender</th>
+      <th>Username</th>
+      <th>Password</th>
+      <th>Email</th>
+      <th>Telephone</th>
+      <th>Image</th>
+      <th colspan="3"></th>
+    </tr>
+  </thead>
+
+  <tbody>
+    <% @users.each do |user| %>
+      <tr>
+        <td align="center" valign="middle">  <%= user.name %>  </td>
+        <td align="center" valign="middle">  <%= user.surname %>  </td>
+        <td align="center" valign="middle">  <%= user.gender %>  </td>
+        <td align="center" valign="middle">  <%= user.username %>  </td>
+        <td align="center" valign="middle">  <%= user.password %>  </td>
+        <td align="center" valign="middle"><%= user.email %>  </td>
+        <td align="center" valign="middle"><%= user.telephone %>  </td>
+        <td align="center" valign="middle"><canvas id="canvas<%= user.name %>"></canvas></td>
+        <!--<td><%= user.image %></td>-->
+        <td align="center" valign="middle"><%= link_to 'Show', user %></td>
+        <td align="center" valign="middle"><%= link_to 'Edit', edit_user_path(user) %></td>
+        <td align="center" valign="middle"><%= link_to 'Destroy', user, method: :delete, data: { confirm: 'Are you sure?' } %></td>
+      </tr>
+      <script type="text/javascript">
+          var canvas = document.getElementById("canvas<%= user.name %>");
+          var ctx = canvas.getContext("2d");
+          var image = new Image();
+          image.onload = function() {
+            ctx.drawImage(image, 0, 0);
+          };
+          /*
+          image.onload = function () {
+                // set size proportional to image
+                  canvas.height = canvas.width * (image.height / image.width);
+                  // step 1 - resize to 50%
+                  var oc = document.createElement('canvas'),
+                  octx = oc.getContext('2d');
+                  oc.width = image.width * 0.5;
+                  oc.height = image.height * 0.5;
+                  octx.drawImage(image, 0, 0, oc.width, oc.height);
+                  // step 2
+                  octx.drawImage(oc, 0, 0, oc.width * 0.5, oc.height * 0.5);
+                  // step 3, resize to final size
+                  ctx.drawImage(oc, 0, 0, oc.width * 0.5, oc.height * 0.5,
+                  0, 0, canvas.width, canvas.height);
+          }*/
+          image.src =" data:image/png;base64,<%= user.image %>";
+          canvas.width = 500;
+          canvas.height = 500;
+      </script>
+    <% end %>
+  </tbody>
+</table>
+
+<br>
+
+<%= link_to 'New User', new_user_path %>
+</div>

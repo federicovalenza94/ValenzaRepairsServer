@@ -1,0 +1,34 @@
+<p id="notice"><%= notice %></p>
+
+<p>
+  <strong>Username:</strong>
+  <%= @device.username %>
+</p>
+
+<p>
+  <strong>Tipo:</strong>
+  <%= @device.tipo %>
+</p>
+
+<p>
+  <strong>Brand:</strong>
+  <%= @device.brand %>
+</p>
+
+<p>
+  <strong>Model:</strong>
+  <%= @device.model %>
+</p>
+
+<p>
+  <strong>Color:</strong>
+  <%= @device.color %>
+</p>
+
+<p>
+  <strong>Number:</strong>
+  <%= @device.number %>
+</p>
+
+<%= link_to 'Edit', edit_device_path(@device) %> |
+<%= link_to 'Back', devices_path %>

@@ -1,0 +1,21 @@
+<!DOCTYPE html>
+<html>
+<head>
+<script src="https://www.gstatic.com/firebasejs/4.12.1/firebase.js"></script>
+<script>
+  // Initialize Firebase
+  var config = {
+    apiKey: "AIzaSyBrN3qj7D-4ykUmMHAqAHcsqYMplOpb2FI",
+    authDomain: "valenzanotification.firebaseapp.com",
+    databaseURL: "https://valenzanotification.firebaseio.com",
+    projectId: "valenzanotification",
+    storageBucket: "valenzanotification.appspot.com",
+    messagingSenderId: "818039939368"
+  };
+  firebase.initializeApp(config);
+</script>
+</head>
+<body>
+    <%= yield %>
+</body>
+</html>

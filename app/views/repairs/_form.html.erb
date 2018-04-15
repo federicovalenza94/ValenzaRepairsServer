@@ -1,0 +1,42 @@
+<%= form_with(model: repair, local: true) do |form| %>
+  <% if repair.errors.any? %>
+    <div id="error_explanation">
+      <h2><%= pluralize(repair.errors.count, "error") %> prohibited this repair from being saved:</h2>
+
+      <ul>
+      <% repair.errors.full_messages.each do |message| %>
+        <li><%= message %></li>
+      <% end %>
+      </ul>
+    </div>
+  <% end %>
+
+  <div class="field">
+    <%= form.label :username %>
+    <%= form.text_field :username, id: :repair_username %>
+  </div>
+
+  <div class="field">
+    <%= form.label :device %>
+    <%= form.text_field :device, id: :repair_device %>
+  </div>
+
+  <div class="field">
+    <%= form.label :price %>
+    <%= form.text_field :price, id: :repair_price %>
+  </div>
+
+  <div class="field">
+    <%= form.label :description %>
+    <%= form.text_field :description, id: :repair_description %>
+  </div>
+
+  <div class="field">
+    <%= form.label :date %>
+    <%= form.text_field :date, id: :repair_date %>
+  </div>
+
+  <div class="actions">
+    <%= form.submit %>
+  </div>
+<% end %>
