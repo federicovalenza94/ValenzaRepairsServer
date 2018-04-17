@@ -92,7 +92,17 @@
                   ctx.drawImage(oc, 0, 0, oc.width * 0.5, oc.height * 0.5,
                   0, 0, canvas.width, canvas.height);
           }*/
-          image.src ="data:image/png;base64,"+"<%= user.image %>";
+          var entityMap = {
+    "&": "&amp;",
+    "<": "&lt;",
+    ">": "&gt;",
+    '"': '&quot;',
+    "'": '&#39;',
+    "/": '&#x2F;'
+  };
+          image.src ="data:image/png;base64,"+String("<%= user.image %>").replace(/[&<>"'\/]/g, function (s) {
+      return entityMap[s];
+    });
           canvas.width = 500;
           canvas.height = 500;
       </script>
