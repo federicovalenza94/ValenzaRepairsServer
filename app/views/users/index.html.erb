@@ -64,7 +64,7 @@
         <td align="center" valign="middle"><%= user.email %>  </td>
         <td align="center" valign="middle"><%= user.telephone %>  </td>
         <td align="center" valign="middle"><canvas id="canvas<%= user.name %>"></canvas></td>
-        <!--<td><%= user.image %></td>-->
+        <td style="display:none;" id = "immagine<%= user.name %>"><%= user.image %></td>
         <td align="center" valign="middle"><%= link_to 'Show', user %></td>
         <td align="center" valign="middle"><%= link_to 'Edit', edit_user_path(user) %></td>
         <td align="center" valign="middle"><%= link_to 'Destroy', user, method: :delete, data: { confirm: 'Are you sure?' } %></td>
@@ -92,17 +92,8 @@
                   ctx.drawImage(oc, 0, 0, oc.width * 0.5, oc.height * 0.5,
                   0, 0, canvas.width, canvas.height);
           }*/
-          var entityMap = {
-    "&": "&amp;",
-    "<": "&lt;",
-    ">": "&gt;",
-    '"': '&quot;',
-    "'": '&#39;',
-    "/": '&#x2F;'
-  };
-          image.src ="data:image/png;base64,"+String("<%= user.image %>").replace(/[&<>"'\/]/g, function (s) {
-      return entityMap[s];
-    });
+          val immagine = document.getElementById("immagine<%= user.name %>");
+          image.src ="data:image/png;base64,"+immagine.value;
           canvas.width = 500;
           canvas.height = 500;
       </script>
