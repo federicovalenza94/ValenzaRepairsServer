@@ -82,14 +82,12 @@
                 tds[n].innerText
                   
     	
-         // var canvas = document.getElementById("canvas<%= user.name %>");
-                 var canvas = tds[7].getElementsByTag("canvas")[0];
+                var canvas = tds[7].getElementsByTag("canvas")[0];
                 var ctx = canvas.getContext("2d");
                 var image = new Image();
                 image.onload = function() {
                         ctx.drawImage(image, 0, 0);
                 };
-                //var immagine = document.getElementById("immagine<%= user.name %>");
                 var immagine = tds[8];
                 image.src ="data:image/png;base64,"+immagine.innerHTML;
                         canvas.width = 1500;
