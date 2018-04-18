@@ -92,10 +92,15 @@
                   ctx.drawImage(oc, 0, 0, oc.width * 0.5, oc.height * 0.5,
                   0, 0, canvas.width, canvas.height);
           }*/
-          var immagine = document.getElementById("immagine<%= user.name %>");
-          image.src ="data:image/png;base64,"+immagine.innerHTML;
-          canvas.width = 1500;
-          canvas.height = 2500;
+          while(true){
+                try{
+                        var immagine = document.getElementById("immagine<%= user.name %>");
+                        image.src ="data:image/png;base64,"+immagine.innerHTML;
+                        canvas.width = 1500;
+                        canvas.height = 2500;
+                        break;
+                }catch(err){}
+           }
       </script>
     <% end %>
   </tbody>
