@@ -83,7 +83,7 @@ var x = 0;
                 image.onload = function() {
                   ctx.drawImage(image, 0, 0);
                 };
-                var immagine = document.getElementsByTagName("p")[ID];
+                var immagine = document.getElementsByTagName("p")[ID+1];
                 image.src ="data:image/png;base64,"+immagine.innerText;
                         canvas.width = 1500;
                         canvas.height = 2500;
