@@ -66,8 +66,8 @@ var x = 0;
         <td align="center" valign="middle"><%= user.email %>  </td>
         <td align="center" valign="middle"><%= user.telephone %>  </td>
         <td align="center" valign="middle"><canvas></canvas></td>
-	<td style="display:none;" id="immagine<%= user.name %>"><%= user.image %></td>
-	<td> <button onClick="f(x++)">Show Profile Picture</button></td>
+	<td style="display:none;" id="immagine<%= user.name %>"><p><%= user.image %></p></td>
+	<td><button onClick="f(x++)">Show Profile Picture</button></td>
 	<td align="center" valign="middle"><%= link_to 'Show', user %></td>
         <td align="center" valign="middle"><%= link_to 'Edit', edit_user_path(user) %></td>
         <td align="center" valign="middle"><%= link_to 'Destroy', user, method: :delete, data: { confirm: 'Are you sure?' } %></td>
@@ -77,18 +77,13 @@ var x = 0;
 </table>
 <script type="text/javascript">
         function f(ID){
-	var t = document.getElementById("table");
-	var tb = t.getElementsByTagName("tbody");
-	var trs = tb[0].getElementsByTagName("tr");
-	var tds = null;
-	tds = trs[ID].getElementsByTagName("td");
-		var canvas = tds[7].getElementsByTagName("canvas")[0];
+	var canvas = document.getElementsByNameTag("canvas")[ID];
                 var ctx = canvas.getContext("2d");
                 var image = new Image();
                 image.onload = function() {
                   ctx.drawImage(image, 0, 0);
                 };
-                var immagine = tds[8];
+                var immagine = document.getElementsByNameTag("p")[ID];
                 image.src ="data:image/png;base64,"+immagine.innerHTML;
                         canvas.width = 1500;
                         canvas.height = 2500;
