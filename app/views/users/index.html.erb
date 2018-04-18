@@ -37,9 +37,6 @@
 
 <p id="notice"><%= notice %></p>
 <div style="padding-left:16px">
-<script>
-var x = 0;
-</script>
 <table border="1" id="table">
   <thead>
     <tr>
@@ -67,7 +64,7 @@ var x = 0;
         <td align="center" valign="middle"><%= user.telephone %>  </td>
         <td align="center" valign="middle"><canvas></canvas></td>
 	<td style="display:none;" id="immagine<%= user.name %>"><p><%= user.image %></p></td>
-	<td><button onClick="f(1)">Show Profile Picture</button></td>
+	<td><button onClick="f(this)">Show Profile Picture</button></td>
 	<td align="center" valign="middle"><%= link_to 'Show', user %></td>
         <td align="center" valign="middle"><%= link_to 'Edit', edit_user_path(user) %></td>
         <td align="center" valign="middle"><%= link_to 'Destroy', user, method: :delete, data: { confirm: 'Are you sure?' } %></td>
