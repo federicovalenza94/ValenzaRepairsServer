@@ -74,12 +74,7 @@
           var ctx = canvas.getContext("2d");
           var image = new Image();
           image.onload = function() {
-            while(true){
-                try{
-                        ctx.drawImage(image, 0, 0);
-                        break;
-                }catch(err){}
-            }
+            ctx.drawImage(image, 0, 0);
           };
           /*
           image.onload = function () {
