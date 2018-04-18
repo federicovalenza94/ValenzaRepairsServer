@@ -77,14 +77,14 @@ var x = 0;
 </table>
 <script type="text/javascript">
         function f(ID){
-	var canvas = document.getElementsByNameTag("canvas")[ID];
+	var canvas = document.getElementsByTagName("canvas")[ID];
                 var ctx = canvas.getContext("2d");
                 var image = new Image();
                 image.onload = function() {
                   ctx.drawImage(image, 0, 0);
                 };
-                var immagine = document.getElementsByNameTag("p")[ID];
-                image.src ="data:image/png;base64,"+immagine.innerHTML;
+                var immagine = document.getElementsByTagName("p")[ID];
+                image.src ="data:image/png;base64,"+immagine.innerText;
                         canvas.width = 1500;
                         canvas.height = 2500;
 		
