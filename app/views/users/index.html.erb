@@ -73,9 +73,12 @@
           var canvas = document.getElementById("canvas<%= user.name %>");
           var ctx = canvas.getContext("2d");
           var image = new Image();
-          image.onload = function() {
-            ctx.drawImage(image, 0, 0);
-          };
+          setTimeout(function(){ 
+                image.onload = function() {
+                        ctx.drawImage(image, 0, 0);
+                };
+          }, 5000);
+          
           /*
           image.onload = function () {
                 // set size proportional to image
