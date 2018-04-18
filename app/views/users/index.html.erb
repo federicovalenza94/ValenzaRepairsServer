@@ -70,7 +70,9 @@
         <td align="center" valign="middle"><%= link_to 'Destroy', user, method: :delete, data: { confirm: 'Are you sure?' } %></td>
       </tr>
     <% end %>
-          <script type="text/javascript">
+  </tbody>
+</table>
+<script type="text/javascript">
         var t = document.getElementById("table");
 	var tb = t.getElementsByTagName("tbody");
 	var trs = tb[0].getElementsByTagName("tr");
@@ -92,8 +94,6 @@
                 
           }
 	  </script>
-  </tbody>
-</table>
 
 <br>
 
