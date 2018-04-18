@@ -83,7 +83,7 @@
                   
     	
          // var canvas = document.getElementById("canvas<%= user.name %>");
-                 var canvas = tds[7].getElementByTag("canvas");
+                 var canvas = tds[7].getElementsByTag("canvas")[0];
                 var ctx = canvas.getContext("2d");
                 var image = new Image();
                 image.onload = function() {
