@@ -78,7 +78,7 @@
 	for (var i=0; i<trs.length; i++)
 	{
     	        tds = trs[i].getElementsByTagName("td");
-    	        var canvas = tds[7].getElementsByTag("canvas")[0];
+    	        var canvas = tds[7].getElementsByTagName("canvas")[0];
                 var ctx = canvas.getContext("2d");
                 var image = new Image();
                 image.onload = function() {
