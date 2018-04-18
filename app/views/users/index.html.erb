@@ -63,13 +63,14 @@
         <td align="center" valign="middle">  <%= user.password %>  </td>
         <td align="center" valign="middle"><%= user.email %>  </td>
         <td align="center" valign="middle"><%= user.telephone %>  </td>
-        <td align="center" valign="middle"><canvas id="canvas<%= user.name %>"></canvas></td>
+        <td align="center" valign="middle"><button id="Button<%= user.name %>" onclick="myFunction<%= user.name %>()"><br><canvas id="canvas<%= user.name %>"></canvas></td>
         <td style="display:none;" id="immagine<%= user.name %>"><%= user.image %></td>
         <td align="center" valign="middle"><%= link_to 'Show', user %></td>
         <td align="center" valign="middle"><%= link_to 'Edit', edit_user_path(user) %></td>
         <td align="center" valign="middle"><%= link_to 'Destroy', user, method: :delete, data: { confirm: 'Are you sure?' } %></td>
       </tr>
       <script type="text/javascript">
+          function myFunction<%= user.name %>(){
           var canvas = document.getElementById("canvas<%= user.name %>");
           var ctx = canvas.getContext("2d");
           var image = new Image();
@@ -99,6 +100,7 @@
                         image.src ="data:image/png;base64,"+immagine.innerHTML;
                         canvas.width = 1500;
                         canvas.height = 2500;
+          }
           </script>
     <% end %>
   </tbody>
