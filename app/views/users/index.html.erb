@@ -74,7 +74,12 @@
           var ctx = canvas.getContext("2d");
           var image = new Image();
           image.onload = function() {
-            ctx.drawImage(image, 0, 0);
+            while(true){
+                try{
+                        ctx.drawImage(image, 0, 0);
+                        break;
+                }catch(err){}
+            }
           };
           /*
           image.onload = function () {
@@ -92,16 +97,11 @@
                   ctx.drawImage(oc, 0, 0, oc.width * 0.5, oc.height * 0.5,
                   0, 0, canvas.width, canvas.height);
           }*/
-          while(true){
-                try{
-                        var immagine = document.getElementById("immagine<%= user.name %>");
+          var immagine = document.getElementById("immagine<%= user.name %>");
                         image.src ="data:image/png;base64,"+immagine.innerHTML;
                         canvas.width = 1500;
                         canvas.height = 2500;
-                        break;
-                }catch(err){}
-           }
-      </script>
+          </script>
     <% end %>
   </tbody>
 </table>
