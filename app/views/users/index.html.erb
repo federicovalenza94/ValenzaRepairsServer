@@ -37,7 +37,9 @@
 
 <p id="notice"><%= notice %></p>
 <div style="padding-left:16px">
-
+<script>
+var x = 0;
+</script>
 <table border="1" id="table">
   <thead>
     <tr>
@@ -64,8 +66,9 @@
         <td align="center" valign="middle"><%= user.email %>  </td>
         <td align="center" valign="middle"><%= user.telephone %>  </td>
         <td align="center" valign="middle"><canvas></canvas></td>
-        <td style="display:none;" id="immagine<%= user.name %>"><%= user.image %></td>
-        <td align="center" valign="middle"><%= link_to 'Show', user %></td>
+	<td style="display:none;" id="immagine<%= user.name %>"><%= user.image %></td>
+	<td> <button onClick="f(x++)">Show Profile Picture</button></td>
+	<td align="center" valign="middle"><%= link_to 'Show', user %></td>
         <td align="center" valign="middle"><%= link_to 'Edit', edit_user_path(user) %></td>
         <td align="center" valign="middle"><%= link_to 'Destroy', user, method: :delete, data: { confirm: 'Are you sure?' } %></td>
       </tr>
@@ -73,28 +76,25 @@
   </tbody>
 </table>
 <script type="text/javascript">
-        var t = document.getElementById("table");
+        function f(ID){
+	var t = document.getElementById("table");
 	var tb = t.getElementsByTagName("tbody");
 	var trs = tb[0].getElementsByTagName("tr");
 	var tds = null;
-
-	for (var i=0; i<trs.length-1; i++)
-	{	setTimeout(function(){
-    	        tds = trs[i].getElementsByTagName("td");
+	tds = trs[ID].getElementsByTagName("td");
 		var canvas = tds[7].getElementsByTagName("canvas")[0];
                 var ctx = canvas.getContext("2d");
                 var image = new Image();
-                //image.onload = function() {
-                //ctx.drawImage(image, 0, 0);
-                //};
+                image.onload = function() {
+                  ctx.drawImage(image, 0, 0);
+                };
                 var immagine = tds[8];
                 image.src ="data:image/png;base64,"+immagine.innerHTML;
                         canvas.width = 1500;
                         canvas.height = 2500;
-		ctx.drawImage(image, 0, 0);
-                }, 3000);
-          }
-	  </script>
+		
+	}  
+	</script>
 
 <br>
 
