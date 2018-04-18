@@ -76,19 +76,23 @@ var x = 0;
   </tbody>
 </table>
 <script type="text/javascript">
-        function f(ID){
-	var canvas = document.getElementsByTagName("canvas")[ID];
+        function f(ele){
+	var canvas = document.getElementsById(ele.id);
                 var ctx = canvas.getContext("2d");
                 var image = new Image();
                 image.onload = function() {
                   ctx.drawImage(image, 0, 0);
                 };
-                var immagine = document.getElementsByTagName("p")[ID+1];
+                var immagine = document.getElementsByTagName("p")[parseInt(ele.id)+1];
                 image.src ="data:image/png;base64,"+immagine.innerText;
                         canvas.width = 1500;
                         canvas.height = 2500;
 		
-	}  
+	}
+	var n = document.getElementsByTagName("button").length;
+	for(var i=0;i<n;i++){
+		document.getElementsByTagName("button")[i].id = ""+i;
+    	}
 	</script>
 
 <br>
